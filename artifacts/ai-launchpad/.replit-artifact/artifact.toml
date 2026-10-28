@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AI LaunchPad — NxtWave Growth Engine"
+description = "A student workshop registration and referral platform with a protected growth dashboard for tracking campaign performance, planning assumptions, and next actions."
+version = "1.0.0"
+id = "artifacts/ai-launchpad"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25197
+
+[services.development]
+run = "pnpm --filter @workspace/ai-launchpad run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ai-launchpad", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ai-launchpad/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25197"
+BASE_PATH = "/"

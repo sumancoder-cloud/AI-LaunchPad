@@ -10,6 +10,12 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: registrations
+    description: Public workshop registration and referral operations
+  - name: events
+    description: Privacy-conscious campaign event capture
+  - name: admin
+    description: Administrator-only campaign reporting and configuration
 paths:
   /healthz:
     get:
@@ -24,7 +30,361 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /registrations:
+    post:
+      operationId: createRegistration
+      tags: [registrations]
+      summary: Register for the workshop
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationInput"
+      responses:
+        "201":
+          description: Registration created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegistrationReceipt"
+        "400":
+          description: Invalid registration details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Email is already registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /events:
+    post:
+      operationId: recordCampaignEvent
+      tags: [events]
+      summary: Record a privacy-conscious campaign event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignEventInput"
+      responses:
+        "202":
+          description: Event accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventAccepted"
+        "400":
+          description: Invalid event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /referrals/{code}/summary:
+    get:
+      operationId: getReferralSummary
+      tags: [registrations]
+      summary: Get public aggregate referral counts
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Referral summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReferralSummary"
+  /admin/summary:
+    get:
+      operationId: getAdminSummary
+      tags: [admin]
+      summary: Get campaign KPIs and grouped analytics
+      parameters:
+        - $ref: "#/components/parameters/DateFrom"
+        - $ref: "#/components/parameters/DateTo"
+        - $ref: "#/components/parameters/Source"
+        - $ref: "#/components/parameters/College"
+        - $ref: "#/components/parameters/GraduationYear"
+      responses:
+        "200":
+          description: Campaign summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSummary"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /admin/registrations:
+    get:
+      operationId: listAdminRegistrations
+      tags: [admin]
+      summary: Search and paginate private registration records
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 25
+        - name: search
+          in: query
+          schema:
+            type: string
+        - $ref: "#/components/parameters/DateFrom"
+        - $ref: "#/components/parameters/DateTo"
+        - $ref: "#/components/parameters/Source"
+        - $ref: "#/components/parameters/College"
+        - $ref: "#/components/parameters/GraduationYear"
+      responses:
+        "200":
+          description: Paginated registrations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegistrationPage"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /admin/registrations/export:
+    get:
+      operationId: exportAdminRegistrations
+      tags: [admin]
+      summary: Export minimized registration data as CSV
+      parameters:
+        - $ref: "#/components/parameters/DateFrom"
+        - $ref: "#/components/parameters/DateTo"
+        - $ref: "#/components/parameters/Source"
+        - $ref: "#/components/parameters/College"
+        - $ref: "#/components/parameters/GraduationYear"
+      responses:
+        "200":
+          description: CSV export
+          content:
+            text/csv:
+              schema:
+                type: string
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /admin/referrals:
+    get:
+      operationId: getAdminReferrals
+      tags: [admin]
+      summary: Get referral totals and top referral codes
+      parameters:
+        - $ref: "#/components/parameters/DateFrom"
+        - $ref: "#/components/parameters/DateTo"
+      responses:
+        "200":
+          description: Referral analytics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminReferrals"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /admin/spend:
+    get:
+      operationId: listAdminSpend
+      tags: [admin]
+      summary: List recorded campaign expenditures
+      responses:
+        "200":
+          description: Campaign expenditures
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CampaignSpend"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    post:
+      operationId: createAdminSpend
+      tags: [admin]
+      summary: Record actual campaign expenditure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignSpendInput"
+      responses:
+        "201":
+          description: Expenditure recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CampaignSpend"
+        "400":
+          description: Invalid expenditure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /admin/config:
+    get:
+      operationId: getAdminConfig
+      tags: [admin]
+      summary: Get campaign settings
+      responses:
+        "200":
+          description: Campaign configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CampaignConfig"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      operationId: updateAdminConfig
+      tags: [admin]
+      summary: Update campaign launch date and planning settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignConfigInput"
+      responses:
+        "200":
+          description: Campaign configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CampaignConfig"
+        "400":
+          description: Invalid campaign configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Administrator sign-in required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
+  parameters:
+    DateFrom:
+      name: dateFrom
+      in: query
+      schema:
+        type: string
+        format: date
+    DateTo:
+      name: dateTo
+      in: query
+      schema:
+        type: string
+        format: date
+    Source:
+      name: source
+      in: query
+      schema:
+        type: string
+    College:
+      name: college
+      in: query
+      schema:
+        type: string
+    GraduationYear:
+      name: graduationYear
+      in: query
+      schema:
+        type: integer
   schemas:
     HealthStatus:
       type: object
@@ -33,4 +393,335 @@ components:
           type: string
       required:
         - status
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required: [error]
+    RegistrationInput:
+      type: object
+      properties:
+        fullName:
+          type: string
+          minLength: 2
+          maxLength: 120
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        college:
+          type: string
+          minLength: 2
+          maxLength: 180
+        graduationYear:
+          type: integer
+          minimum: 2024
+          maximum: 2035
+        branch:
+          type: string
+          minLength: 2
+          maxLength: 100
+        communicationsConsent:
+          type: boolean
+        referralCode:
+          type: string
+          maxLength: 32
+        visitorId:
+          type: string
+          maxLength: 80
+        source:
+          type: string
+          maxLength: 100
+        medium:
+          type: string
+          maxLength: 100
+        campaign:
+          type: string
+          maxLength: 100
+      required:
+        - fullName
+        - email
+        - college
+        - graduationYear
+        - branch
+        - communicationsConsent
+    RegistrationReceipt:
+      type: object
+      properties:
+        id:
+          type: string
+        referralCode:
+          type: string
+        referralUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, referralCode, referralUrl, createdAt]
+    CampaignEventInput:
+      type: object
+      properties:
+        eventType:
+          type: string
+          enum: [landing_view, form_start]
+        visitorId:
+          type: string
+          minLength: 8
+          maxLength: 80
+        page:
+          type: string
+          maxLength: 200
+        source:
+          type: string
+          maxLength: 100
+        medium:
+          type: string
+          maxLength: 100
+        campaign:
+          type: string
+          maxLength: 100
+      required: [eventType, visitorId, page]
+    EventAccepted:
+      type: object
+      properties:
+        accepted:
+          type: boolean
+      required: [accepted]
+    ReferralSummary:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        successfulRegistrations:
+          type: integer
+        shareUrl:
+          type: ["string", "null"]
+      required: [valid, successfulRegistrations, shareUrl]
+    DailyRegistration:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        registrations:
+          type: integer
+      required: [date, registrations]
+    GroupCount:
+      type: object
+      properties:
+        label:
+          type: string
+        registrations:
+          type: integer
+      required: [label, registrations]
+    FunnelMetrics:
+      type: object
+      properties:
+        uniqueVisitors:
+          type: integer
+        formStarts:
+          type: integer
+        registrations:
+          type: integer
+        conversionRate:
+          type: ["number", "null"]
+        trackingComplete:
+          type: boolean
+      required: [uniqueVisitors, formStarts, registrations, conversionRate, trackingComplete]
+    CampaignConfig:
+      type: object
+      properties:
+        campaignName:
+          type: string
+        target:
+          type: integer
+        durationDays:
+          type: integer
+        budgetPaise:
+          type: integer
+        startDate:
+          type: ["string", "null"]
+      required: [campaignName, target, durationDays, budgetPaise, startDate]
+    AdminSummary:
+      type: object
+      properties:
+        registrations:
+          type: integer
+        target:
+          type: integer
+        targetPercent:
+          type: number
+        remaining:
+          type: integer
+        daysRemaining:
+          type: ["integer", "null"]
+        requiredDailyPace:
+          type: ["number", "null"]
+        referrals:
+          type: integer
+        actualSpendPaise:
+          type: integer
+        budgetPaise:
+          type: integer
+        costPerRegistrationPaise:
+          type: ["integer", "null"]
+        daily:
+          type: array
+          items:
+            $ref: "#/components/schemas/DailyRegistration"
+        sources:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupCount"
+        colleges:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupCount"
+        graduationYears:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupCount"
+        funnel:
+          $ref: "#/components/schemas/FunnelMetrics"
+        campaign:
+          $ref: "#/components/schemas/CampaignConfig"
+      required:
+        - registrations
+        - target
+        - targetPercent
+        - remaining
+        - daysRemaining
+        - requiredDailyPace
+        - referrals
+        - actualSpendPaise
+        - budgetPaise
+        - costPerRegistrationPaise
+        - daily
+        - sources
+        - colleges
+        - graduationYears
+        - funnel
+        - campaign
+    RegistrationRecord:
+      type: object
+      properties:
+        id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        college:
+          type: string
+        graduationYear:
+          type: integer
+        branch:
+          type: string
+        source:
+          type: string
+        medium:
+          type: string
+        referralCode:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, fullName, email, college, graduationYear, branch, source, medium, referralCode, createdAt]
+    RegistrationPage:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/RegistrationRecord"
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+      required: [records, page, pageSize, total]
+    AdminReferrals:
+      type: object
+      properties:
+        totalReferrals:
+          type: integer
+        shareOfRegistrations:
+          type: number
+        topCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReferralLeader"
+        daily:
+          type: array
+          items:
+            $ref: "#/components/schemas/DailyRegistration"
+      required: [totalReferrals, shareOfRegistrations, topCodes, daily]
+    ReferralLeader:
+      type: object
+      properties:
+        code:
+          type: string
+        successfulRegistrations:
+          type: integer
+      required: [code, successfulRegistrations]
+    CampaignSpendInput:
+      type: object
+      properties:
+        amountPaise:
+          type: integer
+          minimum: 1
+        channel:
+          type: string
+          minLength: 2
+          maxLength: 100
+        note:
+          type: string
+          maxLength: 300
+        spentAt:
+          type: string
+          format: date
+      required: [amountPaise, channel, spentAt]
+    CampaignSpend:
+      type: object
+      properties:
+        id:
+          type: string
+        amountPaise:
+          type: integer
+        channel:
+          type: string
+        note:
+          type: string
+        spentAt:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, amountPaise, channel, note, spentAt, createdAt]
+    CampaignConfigInput:
+      type: object
+      properties:
+        campaignName:
+          type: string
+          minLength: 3
+          maxLength: 120
+        target:
+          type: integer
+          minimum: 1
+          maximum: 100000
+        durationDays:
+          type: integer
+          minimum: 1
+          maximum: 60
+        budgetPaise:
+          type: integer
+          minimum: 0
+          maximum: 100000000
+        startDate:
+          type: ["string", "null"]
+          format: date
+      required: [campaignName, target, durationDays, budgetPaise, startDate]
 

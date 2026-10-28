@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@layer theme, base, clerk, components, utilities;
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --font-sans: var(--app-font-sans);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: 220 38% 98%;
+  --foreground: 222 42% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 42% 17%;
+  --border: 220 24% 91%;
+  --input: 220 24% 91%;
+  --ring: 239 62% 57%;
+  --primary: 239 62% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 35% 95%;
+  --secondary-foreground: 222 35% 25%;
+  --muted: 220 35% 95%;
+  --muted-foreground: 218 15% 48%;
+  --accent: 195 72% 93%;
+  --accent-foreground: 213 48% 25%;
+  --destructive: 0 68% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --app-font-sans: 'DM Sans', sans-serif;
+  --radius: 1rem;
+  --sidebar: 225 42% 15%;
+  --sidebar-foreground: 220 28% 91%;
+  --sidebar-border: 225 30% 25%;
+}
+
+.dark {
+  --background: 222 35% 10%;
+  --foreground: 220 30% 93%;
+  --card: 222 32% 14%;
+  --card-foreground: 220 30% 93%;
+  --border: 220 24% 24%;
+  --input: 220 24% 24%;
+  --ring: 239 62% 65%;
+  --primary: 239 68% 66%;
+  --primary-foreground: 222 42% 12%;
+  --secondary: 220 25% 20%;
+  --secondary-foreground: 220 30% 91%;
+  --muted: 220 25% 20%;
+  --muted-foreground: 218 14% 68%;
+  --accent: 195 38% 22%;
+  --accent-foreground: 195 60% 88%;
+  --destructive: 0 62% 45%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background font-sans text-foreground antialiased; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid hsl(var(--ring) / .48); outline-offset: 3px; }
+}
+
+.font-display { font-family: 'Manrope', sans-serif; }
+.surface { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); box-shadow: 0 12px 40px -32px rgba(31, 48, 88, .32); }
+.soft-grid { background-image: linear-gradient(rgba(92, 108, 174, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(92, 108, 174, .045) 1px, transparent 1px); background-size: 32px 32px; }
+.hero-wash { background: radial-gradient(ellipse at 78% 30%, rgba(174, 185, 255, .34), transparent 38%), radial-gradient(ellipse at 96% 88%, rgba(173, 223, 233, .32), transparent 36%), linear-gradient(145deg, #f6f8ff, #fcfdff 58%, #f4f9fb); }
+.reveal { animation: rise-in .65s cubic-bezier(.2,.7,.2,1) both; }
+.reveal-delay { animation: rise-in .7s .12s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
