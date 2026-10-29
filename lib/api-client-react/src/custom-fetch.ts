@@ -322,6 +322,82 @@ async function parseSuccessBody(
   }
 }
 
+import { MockGrowthEngine } from "./mock-growth-engine";
+
+function handleMockFallback<T>(urlStr: string, method: string, bodyText: any): T {
+  const url = new URL(urlStr, typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
+  const pathname = url.pathname;
+  let body: any = null;
+  if (typeof bodyText === 'string') {
+    try {
+      body = JSON.parse(bodyText);
+    } catch {
+      body = bodyText;
+    }
+  }
+
+  // POST /api/registrations
+  if (pathname.endsWith('/api/registrations') && method === 'POST') {
+    return MockGrowthEngine.createRegistration(body) as unknown as T;
+  }
+
+  // GET /api/referrals/:code
+  if (pathname.includes('/api/referrals/') && method === 'GET') {
+    const code = pathname.split('/api/referrals/')[1]?.split('/')[0] || '';
+    return MockGrowthEngine.getReferralSummary(decodeURIComponent(code)) as unknown as T;
+  }
+
+  // POST /api/campaign-events
+  if (pathname.endsWith('/api/campaign-events') && method === 'POST') {
+    return MockGrowthEngine.recordEvent(body) as unknown as T;
+  }
+
+  // GET /api/admin/summary
+  if (pathname.endsWith('/api/admin/summary') && method === 'GET') {
+    return MockGrowthEngine.getAdminSummary() as unknown as T;
+  }
+
+  // GET /api/admin/registrations/export
+  if (pathname.endsWith('/api/admin/registrations/export') && method === 'GET') {
+    return MockGrowthEngine.exportRegistrationsCsv() as unknown as T;
+  }
+
+  // GET /api/admin/registrations
+  if (pathname.endsWith('/api/admin/registrations') && method === 'GET') {
+    const page = Number(url.searchParams.get('page') || '1');
+    const pageSize = Number(url.searchParams.get('pageSize') || '20');
+    const search = url.searchParams.get('search') || undefined;
+    return MockGrowthEngine.getAdminRegistrations(page, pageSize, search) as unknown as T;
+  }
+
+  // GET /api/admin/referrals
+  if (pathname.endsWith('/api/admin/referrals') && method === 'GET') {
+    return MockGrowthEngine.getAdminReferrals() as unknown as T;
+  }
+
+  // GET /api/admin/config
+  if (pathname.endsWith('/api/admin/config') && method === 'GET') {
+    return MockGrowthEngine.getConfig() as unknown as T;
+  }
+
+  // PATCH /api/admin/config
+  if (pathname.endsWith('/api/admin/config') && method === 'PATCH') {
+    return MockGrowthEngine.updateConfig(body) as unknown as T;
+  }
+
+  // GET /api/admin/spend
+  if (pathname.endsWith('/api/admin/spend') && method === 'GET') {
+    return MockGrowthEngine.getSpend() as unknown as T;
+  }
+
+  // POST /api/admin/spend
+  if (pathname.endsWith('/api/admin/spend') && method === 'POST') {
+    return MockGrowthEngine.addSpend(body) as unknown as T;
+  }
+
+  throw new Error(`Unhandled mock route: ${method} ${pathname}`);
+}
+
 export async function customFetch<T = unknown>(
   input: RequestInfo | URL,
   options: CustomFetchOptions = {},
@@ -360,12 +436,32 @@ export async function customFetch<T = unknown>(
 
   const requestInfo = { method, url: resolveUrl(input) };
 
-  const response = await fetch(input, { ...init, method, headers });
+  try {
+    const response = await fetch(input, { ...init, method, headers });
 
-  if (!response.ok) {
-    const errorData = await parseErrorBody(response, method);
-    throw new ApiError(response, errorData, requestInfo);
+    if (!response.ok) {
+      // If 404 or 502/503 on an /api route, fall back to mock engine
+      if ((response.status === 404 || response.status >= 502) && requestInfo.url.includes('/api/')) {
+        try {
+          return handleMockFallback<T>(requestInfo.url, method, init.body);
+        } catch (e: any) {
+          if (e?.data?.error) throw e;
+        }
+      }
+      const errorData = await parseErrorBody(response, method);
+      throw new ApiError(response, errorData, requestInfo);
+    }
+
+    return (await parseSuccessBody(response, responseType, requestInfo)) as T;
+  } catch (err: any) {
+    // If it's a known ApiError (like 409 duplicate email from mock engine or server), rethrow
+    if (err instanceof ApiError || err?.status === 409 || err?.data?.error) {
+      throw err;
+    }
+    // Network failure (server down, CORS, static deploy) -> fallback to mock engine
+    if (requestInfo.url.includes('/api/')) {
+      return handleMockFallback<T>(requestInfo.url, method, init.body);
+    }
+    throw err;
   }
-
-  return (await parseSuccessBody(response, responseType, requestInfo)) as T;
 }

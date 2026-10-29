@@ -1,0 +1,1546 @@
+Heyy! ❤️ First, relax. We can turn this into a **serious, professional Growth Intern submission** that demonstrates marketing strategy, product thinking, AI usage, technical execution, and business impact.
+
+You already have a technical background in CSE, so I would use that advantage. Instead of submitting only a marketing plan or a generic landing page, you can build a small, working growth platform that demonstrates how NxtWave could acquire students, convert them into registrations, encourage referrals, and measure campaign performance.
+
+**My recommendation: build a mini growth-engine product, not just a landing page.**
+
+However, there is one important distinction: the assignment is testing your judgment as a growth intern, not just your ability to build software. A complicated dashboard that looks impressive but doesn't explain how you will acquire 500 students could be weaker than a simple, well-executed system with a convincing growth strategy.
+
+We will combine both.
+
+# 1. The complete strategy: what you should build
+
+## Project name: AI LaunchPad — The 500-Student Growth Engine
+
+**Campaign:** Build Your First AI Project in 60 Minutes  
+**Organization:** NxtWave  
+**Duration:** 7 days  
+**Budget:** ₹2,000  
+**Target:** 500 registrations from final-year engineering students.
+
+The idea is to build a platform with two connected experiences:
+
+1. **Student experience:** Students discover the workshop, register, receive a unique referral code, invite friends, and see their registration confirmation.
+2. **Growth team experience:** The campaign team monitors registrations, referral performance, channel effectiveness, registration trends, and progress toward the 500-registration target.
+
+Your central idea will be:
+
+> Don't just promote a workshop. Build a measurable growth loop in which every student who discovers the workshop can become a potential source of new registrations.
+
+This makes the submission relevant to the actual role.
+
+### What makes your submission different?
+
+Most candidates could submit:
+- A five-slide marketing plan.
+- A landing page.
+- A few WhatsApp messages.
+- A projected registration count.
+
+Your submission can connect all four into one system.
+
+| Component | What you will build | What it demonstrates |
+|---|---|---|
+| Campaign strategy | A seven-day acquisition plan | Growth thinking |
+| Landing page | A conversion-focused workshop page | Marketing and product thinking |
+| Registration system | A form with validation and confirmation | Execution |
+| Authentication | A protected admin login | Technical judgment |
+| Referral engine | Unique referral codes and attribution | Viral growth thinking |
+| Analytics dashboard | Registration funnel, channel performance and daily progress | Data-driven decision-making |
+| Campaign assets | WhatsApp, email, club outreach and social copy | Practical marketing |
+| AI learning notes | Three examples of how you questioned and improved AI suggestions | Learnability and ownership |
+| Final presentation | Five slides and a three-minute video | Communication |
+
+**One important point:** Authentication, analytics and referrals are supporting features. Your growth strategy and the quality of your decisions remain the main story.
+
+Also, make the demo honest. If you use simulated registrations to demonstrate analytics, label them as demo data. Do not present simulated registrations as real students or actual campaign results.
+
+---
+
+# 2. Understand what NxtWave is really evaluating
+
+The assignment gives you four explicit deliverables. I would treat each as a separate workstream.
+
+| Deliverable | What the reviewer should learn |
+|---|---|
+| Growth plan, maximum five slides or two pages | You understand the audience, channels, economics and conversion strategy. |
+| Working asset | You can turn an idea into a usable product. |
+| AI and learning notes | You can use AI critically rather than accepting everything it generates. |
+| Three-minute video | You can explain your decisions clearly and confidently. |
+
+The biggest mistake would be spending all 48 hours coding and leaving the marketing strategy, reflection, and video until the last minute.
+
+We will work backward from the submission requirements.
+
+## Your success criteria
+
+By the end, aim to have:
+
+- A live, mobile-friendly student landing page.
+- A functioning registration flow connected to a database.
+- Unique referral codes with referral attribution.
+- A secure, protected admin dashboard.
+- Analytics that update from stored registration data.
+- A seven-day plan showing how you aim to reach 500 registrations.
+- A maximum-five-slide presentation.
+- Three honest AI learning examples.
+- A polished three-minute demonstration video.
+
+You do not need to build every possible feature. You need a complete, testable core product.
+
+# 3. Which tools should you use?
+
+Don't use ten AI tools just because the assignment permits them. Use a small set, with each tool doing a specific job.
+
+## Recommended tool stack
+
+
+
+| Tool | Purpose | Priority |
+|---|---|---|
+| Lovable — [Lovable official website](https://lovable.dev/?utm_source=chatgpt.com) | Generate and refine the web application | Essential if you choose AI-first development |
+| Supabase — [Supabase official website](https://supabase.com/?utm_source=chatgpt.com) | Database, authentication, and access control | Essential for the full-stack version |
+| GitHub — [GitHub official website](https://github.com/?utm_source=chatgpt.com) | Store and version your code | Strongly recommended |
+| Vercel — [Vercel official website](https://vercel.com/?utm_source=chatgpt.com) | Deploy the application | Recommended |
+| ChatGPT | Challenge strategy, copywriting, architecture, testing and critique | Essential for your workflow |
+| Canva — [Canva official website](https://www.canva.com/?utm_source=chatgpt.com) | Create the five-slide presentation | Optional |
+| Google Forms — [Google Forms official website](https://forms.google.com/?utm_source=chatgpt.com) | Fallback registration form or research survey | Optional |
+
+Official documentation: [Supabase authentication](https://supabase.com/docs/guides/auth), [database security and row-level security](https://supabase.com/docs/guides/database/postgres/row-level-security), and [deploying Next.js](https://nextjs.org/docs/app/getting-started/deploying). [Supabase](https://supabase.com/docs/guides/auth?utm_source=chatgpt.com)
+
+### My recommendation for you
+
+Use **Lovable + Supabase + GitHub + Vercel**, with ChatGPT as your strategy and review partner.
+
+This gives you a practical path to a working application without having to code every UI component manually.
+
+If you are more comfortable building with React and Next.js in VS Code, you can use Cursor instead. The architecture and prompts below still apply.
+
+**Important:** The exact integration capabilities, free-tier limits and deployment requirements can change. Verify them in the official documentation before committing to a workflow. Do not pay for a tool just to complete this assignment.
+
+---
+
+# 4. Define the product before opening the AI builder
+
+This step matters because a vague prompt often generates a beautiful but incomplete application.
+
+Your project should have three main parts.
+
+## A. Public student experience
+
+Route: `/`
+
+The landing page should contain:
+
+1. A clear headline.
+2. A specific benefit for final-year engineering students.
+3. A short workshop description.
+4. What students will build in 60 minutes.
+5. A simple registration form.
+6. A prominent registration CTA.
+7. An explanation of how referrals work.
+8. FAQs.
+9. A privacy notice.
+
+Suggested headline:
+
+**Build Your First AI Project in 60 Minutes. No AI Experience Required.**
+
+Supporting text:
+
+"Go from AI-curious to project-builder in one practical online workshop designed for engineering students. Discover how an AI project works, follow a guided build, and leave with a clearer next step for your portfolio."
+
+Use only workshop details that have actually been confirmed. If the exact project, instructor, date, platform, or prerequisites are unknown, mark them as proposed details or placeholders.
+
+Do not invent faculty endorsements, placement guarantees, attendee counts, or testimonials.
+
+### Registration form
+
+Ask only for information that is useful:
+
+- Full name.
+- Email address.
+- College.
+- Graduation year.
+- Branch or specialization.
+- Optional referral code.
+- Consent to receive workshop-related communications.
+
+You can make the registration form more effective by avoiding unnecessary fields.
+
+For example, do not ask students to create an account and password before registering. That adds friction.
+
+**The recommended flow is registration first, optional account creation later.**
+
+After registration, show a confirmation screen containing:
+- Registration status.
+- A unique referral link.
+- A copy-link button.
+- WhatsApp sharing.
+- A reminder to save the workshop details.
+- A clear explanation of what happens next.
+
+## B. Student referral experience
+
+Route: `/referrals` or a registration confirmation panel.
+
+Every registrant receives a unique referral code.
+
+Example:
+
+`AILAUNCH-K7P4Q`
+
+The student can share a link such as:
+
+`https://your-domain.example/?ref=AILAUNCH-K7P4Q`
+
+That URL is illustrative; your deployed application will have its own real domain.
+
+When a new student registers through that link, your backend records the referral source.
+
+Display:
+- Referral code.
+- Shareable link.
+- Successful registrations attributed to the link.
+- A simple progress indicator.
+- WhatsApp sharing text.
+
+Do not make referral success depend on students posting spam. Provide a helpful, optional invitation that they can send to friends or college groups where promotion is permitted.
+
+A simple referral system is enough. You do not need a complex rewards engine.
+
+## C. Admin growth dashboard
+
+Route: `/admin`
+
+This is where you can make your submission stand out.
+
+The dashboard should answer one central question:
+
+**Are we on track to reach 500 registrations within seven days, and what should we do next?**
+
+Include the following.
+
+| Dashboard component | What it shows |
+|---|---|
+| Total registrations | Unique registered students |
+| Target progress | Registrations divided by 500 |
+| Daily acquisition | Registrations by day |
+| Channel performance | Registrations attributed to each acquisition channel |
+| Referral performance | Referred registrations and top referral codes |
+| Funnel | Visits → form starts → completed registrations, where those events are measured |
+| College distribution | Registrations grouped by college |
+| Conversion rate | Completed registrations divided by measured unique visitors |
+| Budget tracker | Planned and actual campaign expenditure |
+| Forecast | Projected registrations by campaign end, clearly marked as a model |
+| Next action | A recommendation based on the campaign data |
+
+For example, the dashboard might display:
+
+- Target: 500 registrations.
+- Current registrations: 184.
+- Target completion: 36.8%.
+- Required remaining registrations: 316.
+- Days remaining: 3.
+- Required daily pace: approximately 106 registrations per day.
+
+These numbers are **illustrative demo data, not actual campaign results**.
+
+### Add one distinctive feature: the Growth Action Center
+
+Rather than showing charts alone, add a panel that converts the numbers into decisions.
+
+Example rules:
+
+| Observed situation | Suggested action |
+|---|---|
+| A college club generates registrations at a high rate | Ask that club to share the workshop with another relevant student group. |
+| Many students visit but few complete registration | Simplify the form and test the CTA. |
+| Referral links generate very few visits | Improve the sharing message and make the referral CTA more visible. |
+| Registrations are below the planned daily pace | Prioritize outreach to active clubs and class representatives. |
+| One channel produces registrations at a lower cost | Shift remaining discretionary spend toward that channel, after validating attribution and quality. |
+
+This is a stronger growth feature than simply displaying a graph.
+
+The recommendations should be rule-based and explainable. You do not need to integrate another AI API to make the dashboard intelligent.
+
+---
+
+# 5. The growth strategy: how to aim for 500 registrations
+
+Before building the dashboard, work out the acquisition plan.
+
+Your budget is only ₹2,000, so paid advertising should not be the primary strategy. You need to prioritize distribution through student communities, clubs, and direct outreach.
+
+Your plan should also distinguish **registration volume** from **attendance**. The assignment asks for registrations, so that is the primary target.
+
+## Who exactly are you targeting?
+
+### Primary audience
+
+Final-year engineering students graduating in 2027, particularly students who:
+- Want to strengthen their project portfolio.
+- Are preparing for placements or internships.
+- Are interested in AI but are unsure how to begin.
+- Have learned programming but have not built an AI project.
+- Want a practical introduction without committing to a long course.
+
+This is a hypothesis about the audience's needs, not a claim that every student has these motivations.
+
+### Secondary audience
+
+- Student club coordinators.
+- Technical society leads.
+- College placement representatives, where outreach is appropriate.
+- Class representatives and student community administrators.
+- Students from earlier engineering years who may be interested, provided final-year students remain the priority.
+
+### Why would they care?
+
+Students may see value in a workshop that:
+- Reduces the barrier to starting an AI project.
+- Provides a structured first step rather than a long list of tutorials.
+- Offers a practical activity they can discuss in interviews.
+- Helps them understand what they would need to learn next.
+
+Avoid promising that attending a one-hour workshop will guarantee an internship, placement, or job.
+
+### What would make them register?
+
+I would test three messages:
+
+**Message A — Career relevance**
+
+"Want to add an AI project to your portfolio but don't know where to start?"
+
+**Message B — Low barrier to entry**
+
+"Your first AI project. One guided hour. No AI experience required."
+
+**Message C — Practical outcome**
+
+"Stop collecting AI tutorials. Start building your first project."
+
+Use these as hypotheses, not proven winning messages. Test them with small groups or compare their actual performance if the campaign were executed.
+
+---
+
+## The channel mix
+
+I would prioritize four acquisition channels.
+
+| Priority | Channel | Why it deserves attention |
+|---|---|---|
+| 1 | College clubs and student representatives | One relationship can distribute the workshop to many relevant students. |
+| 2 | WhatsApp college and class groups | Students can share the workshop in communities they already use. |
+| 3 | Student referrals | Registrants can bring in additional students through personal invitations. |
+| 4 | LinkedIn and relevant student communities | Useful for extending reach beyond the initial college network. |
+
+Email can support these channels, especially through approved student-club or community mailing lists. I would not assume that access to a large email database is available.
+
+The campaign should not depend on scraping student contact details or sending unsolicited bulk messages.
+
+## The seven-day execution plan
+
+| Day | Primary activity | What you measure |
+|---|---|---|
+| Day 1 | Publish landing page, test registration and prepare campaign assets | Form completion rate and technical reliability |
+| Day 2 | Contact student club coordinators and class representatives | Positive responses and distribution commitments |
+| Day 3 | Launch WhatsApp distribution through approved groups and student networks | Registrations by source |
+| Day 4 | Publish practical project-focused content and activate referrals | Referral visits and referred registrations |
+| Day 5 | Follow up with interested clubs and underperforming channels | New registrations and channel conversion |
+| Day 6 | Share a useful workshop preview and reminder through permitted channels | Registration momentum |
+| Day 7 | Final reminder, fix any conversion issues and report campaign results | Total registrations and cost per registration |
+
+Every channel should use a trackable campaign link or a clear source identifier.
+
+For example:
+- `?utm_source=college_club&utm_medium=community`
+- `?utm_source=whatsapp&utm_medium=group`
+- `?utm_source=student_referral&utm_medium=referral`
+- `?utm_source=linkedin&utm_medium=organic`
+
+The application should preserve those source parameters through the registration flow.
+
+Do not count a registration as attributable to a channel simply because the student visited that channel at some point. Define your attribution rule and apply it consistently.
+
+## How could these channels produce 500 registrations?
+
+This is the most important part of the marketing plan: show the arithmetic behind your target.
+
+Use the following as a **planning model**, not a guarantee.
+
+| Channel | Assumption | Registration target |
+|---|---|---:|
+| College clubs and student representatives | 20 active partners × 12 registrations each | 240 |
+| WhatsApp and class communities | 10 permitted group distributions × 10 registrations each | 100 |
+| Student referral loop | 100 registrations attributed to referral links | 100 |
+| LinkedIn and student communities | 40 registrations | 40 |
+| Permission-based email outreach | 20 registrations | 20 |
+| **Total** | | **500** |
+
+There is a potential overlap between these channels. For example, a student might see a WhatsApp post, visit LinkedIn, and then register using a friend's referral link.
+
+For the plan to be credible, assign each registration to one primary source using a consistent attribution rule, deduplicate by student identity, and report unknown sources separately. The targets above assume that this is done.
+
+### How I would validate the assumptions
+
+Before claiming that this plan can reach 500 students, I would ask:
+
+1. Can we realistically secure 20 student-community partners within two days?
+2. Can each partner reach enough final-year students?
+3. Are the WhatsApp groups relevant, active, and open to this kind of promotion?
+4. How many referrals can reasonably come from the initial registrants?
+5. Which channel produces registrations rather than just clicks?
+
+If the first two assumptions fail, the plan needs to change. You cannot compensate for a lack of distribution simply by making the landing page more attractive.
+
+### A better way to forecast
+
+Let:
+
+- \(P\) = active distribution partners.
+- \(R_p\) = average registrations attributed to each partner.
+- \(R_w\) = registrations from WhatsApp distributions.
+- \(R_r\) = registrations from referrals.
+- \(R_o\) = registrations from other channels.
+
+Then:
+
+\[
+R_{\text{total}} = P \times R_p + R_w + R_r + R_o
+\]
+
+Your goal is:
+
+\[
+R_{\text{total}} \geq 500
+\]
+
+The dashboard should compare actual registrations against these assumptions daily.
+
+If you are behind target, it should identify the shortfall and the channels most likely to help close it.
+
+## Budget: ₹2,000
+
+I would not spend the budget immediately.
+
+| Expense | Budget | Purpose |
+|---|---:|---|
+| Small distribution or creative experiment | ₹800 | Test a limited promotional experiment if free distribution is insufficient |
+| Contingency | ₹400 | Cover necessary campaign expenses |
+| Reserve for the best-performing channel | ₹800 | Allocate after early evidence shows where the money is most useful |
+| **Total** | **₹2,000** | |
+
+The default should be organic distribution. Use existing design tools and student networks where possible, and release discretionary spending only after observing actual results.
+
+If no paid promotion is necessary, preserve the budget rather than spending it just to use the allocation.
+
+### One useful metric
+
+\[
+\text{Cost per registration} =
+\frac{\text{Campaign spend}}{\text{Attributed registrations}}
+\]
+
+For example, if the entire ₹2,000 budget were spent to obtain 500 registrations:
+
+\[
+\text{Cost per registration} = \frac{2000}{500} = ₹4
+\]
+
+That is a budget scenario, **not a prediction that you will achieve ₹4 per registration**. Report the actual figure only after real spending and registrations have occurred.
+
+---
+
+# 6. Now build the actual working application
+
+Let's get practical. Open [Lovable](https://lovable.dev/) and create a new project.
+
+Do not ask it to build everything in a single vague prompt. Work in phases so you can inspect, test, and correct the result.
+
+I recommend the following build order:
+
+1. Design and public landing page.
+2. Database and registration flow.
+3. Referral tracking.
+4. Authentication and admin access.
+5. Analytics dashboard.
+6. Testing and deployment.
+
+**Important:** A generated UI is not the same as a working application. After each phase, verify that the buttons work, data persists, permissions are correct, and errors are handled.
+
+## Prompt 1: Generate the complete product foundation
+
+Copy and paste this prompt into Lovable.
+
+Build a polished, responsive, full-stack growth campaign platform called "AI LaunchPad — NxtWave Growth Engine".
+
+CONTEXT
+This is a demonstration project for a Growth Intern challenge. The campaign promotes a free online workshop titled "Build Your First AI Project in 60 Minutes".
+
+The campaign has:
+- A target of 500 registrations.
+- A duration of seven days.
+- A total budget of ₹2,000.
+- A target audience of final-year engineering students.
+- A focus on organic acquisition, college communities, WhatsApp distribution, student referrals and measurable growth.
+
+PRODUCT GOAL
+Build a real, working application rather than a static landing page. The application must help students register and share referrals, while allowing an authorized administrator to analyze campaign performance.
+
+TECH STACK
+Use React and TypeScript with a clean, maintainable component structure. Use Supabase for PostgreSQL database storage and authentication. Use the supported deployment workflow to publish the application.
+
+DESIGN
+Create a premium, modern, responsive SaaS interface.
+Use a light background, dark navy typography, restrained indigo accents, subtle gradients, generous whitespace, rounded cards and accessible contrast.
+Use clear typography and polished micro-interactions.
+Prioritize mobile-first usability.
+Avoid excessive animations, generic stock photos and cluttered dashboards.
+Make the design feel like a credible student-tech product rather than a generic AI-generated template.
+
+PUBLIC ROUTES
+
+1. "/" — Workshop landing page.
+2. "/register" — Student registration.
+3. "/success" — Registration confirmation and referral sharing.
+4. "/admin/login" — Administrator login.
+5. "/admin" — Protected campaign dashboard.
+6. "/admin/registrations" — Registration table.
+7. "/admin/channels" — Acquisition analytics.
+8. "/admin/referrals" — Referral analytics.
+
+LANDING PAGE
+Headline: "Build Your First AI Project in 60 Minutes."
+Supporting text: "Take your first step from AI curiosity to hands-on building."
+Include the workshop benefits, intended audience, a proposed agenda, FAQs, a registration CTA and privacy information.
+
+Do not invent a workshop date, speaker, attendance count, testimonials, credentials, or placement guarantees. Put unconfirmed information behind clearly labeled configuration placeholders.
+
+REGISTRATION
+Create a mobile-friendly form with:
+- Full name.
+- Email.
+- College.
+- Graduation year.
+- Engineering branch.
+- Optional referral code.
+- Appropriate communication consent.
+
+Validate required fields on both client and server sides.
+Normalize email addresses.
+Prevent duplicate registrations using a database uniqueness constraint.
+Show useful loading, success, and error states.
+Do not require a password before workshop registration.
+Do not expose private registration records publicly.
+
+REFERRAL SYSTEM
+Generate a unique, non-guessable referral code for every registrant.
+Capture valid referral query parameters when the landing page opens.
+Persist the attribution across navigation and registration.
+Validate referral codes on the server.
+Prevent self-referrals.
+Prevent duplicate registration and duplicate referral credit.
+Do not count a referral click as a successful registration.
+Keep referral codes separate from sensitive personal information.
+Create share and copy-link buttons.
+Use an optional WhatsApp share action with a prefilled, editable message.
+
+DATABASE
+Design appropriate tables for registrations, referral attribution, campaign events, and campaign configuration.
+Use appropriate primary keys, foreign keys, unique constraints, timestamps and indexes.
+Store campaign source, medium and campaign information when available.
+Create a consistent source-attribution rule.
+Deduplicate registrations and prevent invalid referral credit.
+Use Row Level Security and least-privilege access policies.
+Anonymous visitors may submit permitted registrations but must not be able to list, export, or read private registrations.
+Never expose service-role credentials in frontend code.
+
+ADMIN AUTHENTICATION
+Implement real Supabase authentication for administrators.
+Allow access to administrative routes only to explicitly authorized administrator accounts.
+A logged-in user must not automatically become an administrator.
+Enforce authorization on database queries and server-side operations, not only in the UI.
+Provide sign-out functionality.
+Do not hardcode administrator passwords or secrets.
+
+DASHBOARD
+Create:
+- Total unique registrations.
+- Target progress toward 500.
+- Remaining registrations.
+- Daily registrations.
+- Registrations by acquisition source.
+- Referral registrations and top referral codes.
+- College and graduation-year breakdowns.
+- Conversion funnel when real event data is available.
+- Budget allocation and recorded spending.
+- Cost per registration when actual spend and registrations exist.
+- An explainable rule-based Growth Action Center.
+- Filters for date, source, college and graduation year.
+- A registrations table with search and pagination.
+- CSV export restricted to authorized administrators and designed to minimize personal data exposure.
+
+DATA INTEGRITY
+Analytics must be derived from database records rather than hardcoded numbers.
+Clearly distinguish real records, seeded demonstration data, targets, estimates and forecasts.
+Never represent simulated registrations as real students.
+Make it possible to run the project in an empty-data state without errors.
+
+TESTING AND DELIVERY
+Build incrementally.
+First create the core UI and route structure.
+Then implement the database and registration flow.
+Then implement referral attribution.
+Then implement authentication and administrative authorization.
+Finally implement analytics, error handling and responsive refinements.
+
+After each stage, report which functionality is implemented, which configuration is required, and which tests remain.
+Do not claim that any feature works until it has been verified.
+Prioritize a secure, usable end-to-end registration flow over decorative features.
+
+### What to do after Prompt 1
+
+Inspect the generated application before asking for additional features.
+
+Check:
+- Does the landing page render?
+- Does the mobile layout work?
+- Are the routes present?
+- Are the components consistent?
+- Is Supabase actually connected, or has the builder only created placeholder UI?
+- Are the form and dashboard still displaying hardcoded sample values?
+
+Do not move on until the foundation is reasonably stable.
+
+---
+
+## Prompt 2: Implement a reliable database and registration flow
+
+After connecting Supabase, use this prompt.
+
+Now focus only on the backend, database integrity and registration flow of AI LaunchPad.
+
+Inspect the existing project before modifying anything. Preserve working UI components and avoid rewriting unrelated features.
+
+Implement and verify:
+
+1. A PostgreSQL schema for workshop registrations, referral attribution, campaign events and campaign configuration.
+2. A unique normalized email constraint for registrations.
+3. Unique referral codes generated on the trusted server side.
+4. Server-side validation for registration input.
+5. Safe handling of duplicate submissions and database errors.
+6. Validated campaign attribution using UTM parameters and referral codes.
+7. Consistent attribution rules that prevent a single registration from being credited to multiple primary sources.
+8. Self-referral prevention and duplicate referral-credit prevention.
+9. Row Level Security and minimum necessary grants for every exposed table.
+10. An anonymous registration path that cannot read private student records.
+11. Secure server-side administrative operations.
+12. Useful form success and failure states.
+
+Use migrations or reproducible SQL scripts for schema changes. Do not rely on undocumented manual database changes.
+
+Keep secret keys on the server. Never expose a Supabase service-role or secret key in browser code.
+
+Write or perform tests for:
+- A valid registration.
+- Missing required fields.
+- Malformed email.
+- Duplicate email.
+- Invalid referral code.
+- Self-referral.
+- Duplicate referral credit.
+- Anonymous attempts to read registration records.
+- Unauthorized attempts to access administrative operations.
+
+Do not claim that security is complete until the relevant policies and tests have been checked.
+
+At the end, summarize the schema, implemented behavior, configuration required and test results. List any remaining limitations honestly.
+
+### Important implementation decision
+
+You do not need a public student login system to demonstrate this growth strategy.
+
+The student can register without an account and receive a referral link. Your administrator can log in separately to inspect campaign data.
+
+This keeps registration simple while still demonstrating real authentication and authorization where they matter.
+
+Official references: [Supabase Auth](https://supabase.com/docs/guides/auth) and [Supabase database security](https://supabase.com/docs/guides/database/secure-data). [Supabase](https://supabase.com/docs/guides/auth?utm_source=chatgpt.com)
+
+---
+
+## Prompt 3: Build the referral engine
+
+This is the feature that connects your product to your growth strategy.
+
+Implement the referral engine for AI LaunchPad. Inspect the existing database and registration flow before making changes.
+
+OBJECTIVE
+Turn registered students into voluntary referral sources without creating spam or falsely inflating registration counts.
+
+REQUIREMENTS
+
+1. Give every registrant a unique referral code.
+2. Generate a shareable registration URL containing that code.
+3. Capture referral parameters when a new visitor lands on the site.
+4. Preserve referral attribution across navigation and registration.
+5. Validate the code on the server before recording referral attribution.
+6. Attribute credit only when a genuinely new, valid registration is completed.
+7. Prevent self-referrals, duplicate registrations, duplicate referral credit and invalid codes.
+8. Record referral attribution in the database so analytics can be reproduced.
+9. Provide a copy-link button and a WhatsApp sharing button.
+10. Prefill the sharing message with the actual workshop title and registration URL.
+11. Show the registrant how many valid registrations are attributed to their referral code.
+12. Display a clear empty state when no referrals have occurred.
+
+Create a student-facing referral panel on the registration confirmation page.
+
+The interface should show:
+- Referral code.
+- Shareable link.
+- Copy confirmation.
+- WhatsApp share option.
+- Verified referred registrations.
+- A short explanation of how referrals are counted.
+
+ADMIN ANALYTICS
+Show total valid referred registrations, referral contribution to total registrations, top referral codes and referral performance over time.
+
+GROWTH EXPERIMENT
+Create an optional, configurable referral experiment. For the prototype, use a progress indicator or recognition badge instead of promising prizes. Do not create a rewards program that requires an unapproved budget.
+
+TESTING
+Verify that:
+- A valid referral can be attributed to a new registration.
+- An invalid code receives no referral credit.
+- A user cannot refer themselves.
+- Duplicate submissions do not increase the referral count.
+- Refreshing or navigating does not unexpectedly erase a valid attribution.
+- The admin dashboard uses database records rather than hardcoded referral counts.
+
+Do not invent successful referrals. Any demo data must be explicitly labeled as simulated.
+
+### How to make the referral loop useful
+
+The idea is not simply to display a referral code.
+
+It is to make the action easy enough that students might actually use it.
+
+For example, after registration, the student sees:
+
+> You are registered! Know someone who wants to build their first AI project? Invite them to join the free workshop.
+
+The student can share the invitation with friends or appropriate student communities.
+
+Your analytics can then answer:
+- How many students shared a link?
+- How many visits came through referral links?
+- How many visitors registered?
+- What percentage of registrations came from referrals?
+
+These are meaningful growth questions.
+
+---
+
+## Prompt 4: Build the admin dashboard and analytics
+
+Build the production-minded campaign analytics dashboard for AI LaunchPad.
+
+Before implementing anything, inspect the database schema, authorization rules and existing UI. Reuse working components and avoid duplicating business logic.
+
+PRIMARY OBJECTIVE
+Help the campaign operator decide whether the campaign is on track to achieve 500 unique registrations in seven days.
+
+KPI CARDS
+Display:
+- Total unique registrations.
+- Target registrations: 500.
+- Percentage of target completed.
+- Registrations remaining.
+- Days remaining in the campaign.
+- Required daily registration pace.
+- Referred registrations.
+- Actual campaign spending, if entered.
+
+CHARTS
+Include:
+1. Daily registration trend.
+2. Registration breakdown by acquisition channel.
+3. Referral contribution.
+4. Registrations by college.
+5. Registration funnel: unique landing-page visitors, form starts and completed registrations, only when the relevant events have actually been tracked.
+
+FILTERS
+Support date range, channel, college and graduation year.
+
+REGISTRATION TABLE
+Provide search, pagination, date filters and appropriate export functionality. Only authorized administrators may access personal registration information.
+
+BUDGET
+Track the planned budget of ₹2,000 separately from actual spending. Display actual cost per registration only when valid expenditure and registration data are available.
+
+GROWTH ACTION CENTER
+Implement a transparent rule-based recommendation panel.
+
+Examples:
+- If actual registrations are below the required pace, calculate the current shortfall and recommend investigating the channels with the greatest acquisition potential.
+- If a channel generates traffic but few registrations, suggest testing the landing page and form.
+- If referrals are weak, suggest improving the share message and visibility of the referral panel.
+- If a channel is generating registrations efficiently, recommend validating the result before reallocating budget.
+- If event tracking is missing, explicitly tell the administrator that conversion metrics are incomplete.
+
+Every recommendation must state the observed metric, the rule that triggered it and the proposed next action.
+
+DATA ACCURACY
+All charts and KPI cards must use actual database queries.
+Do not hardcode registration totals.
+Do not count page visits as registrations.
+Use distinct registration identifiers and a documented attribution rule.
+Handle empty states, loading states and errors.
+Distinguish actual data from seeded demo data and forecasts.
+Clearly label any projections as estimates.
+
+ACCESS CONTROL
+Protect the dashboard and its underlying data with verified administrator authorization and database policies.
+
+QUALITY
+Ensure the dashboard works on desktop and mobile. Add accessible chart labels and readable legends. Avoid decorative charts that do not support a decision.
+
+DELIVERABLE
+Provide a working dashboard, a list of its data sources, the formulas used for each metric, and a short test report confirming the behavior of each component.
+
+### The three analytics features that matter most
+
+If time is running short, prioritize these:
+
+1. **Registration pace:** Are we on track for 500?
+2. **Channel performance:** Which sources are producing actual registrations?
+3. **Growth Action Center:** What should we do next?
+
+These three make the dashboard useful for decision-making, not just visually attractive.
+
+---
+
+## Prompt 5: Make the application look professional
+
+Use this after the main functionality works.
+
+Act as a senior product designer and frontend quality engineer. Audit the complete AI LaunchPad application.
+
+Do not add new major features. Improve the usability, consistency and polish of the existing product.
+
+Review:
+- Visual hierarchy and typography.
+- Mobile responsiveness.
+- Spacing and alignment.
+- Landing-page CTA visibility.
+- Registration form clarity.
+- Field validation and error messages.
+- Loading states and success feedback.
+- Empty states for analytics and referrals.
+- Chart labels and legends.
+- Table readability.
+- Navigation consistency.
+- Keyboard accessibility.
+- Focus states and contrast.
+- Button behavior.
+- Broken routes and links.
+- Console errors and failed network requests.
+
+Use consistent design tokens and reusable components.
+Ensure that the registration form is easy to complete on a mobile phone.
+Make the primary CTA clear without using deceptive urgency.
+Do not add fake testimonials, fake user counts or misleading scarcity claims.
+Do not replace working backend logic with mock implementations.
+
+After the audit, provide a prioritized list of issues fixed and issues still unresolved. Verify the production build and important user flows before claiming the application is complete.
+
+---
+
+# 7. Add one advanced feature that makes the submission distinctive
+
+If the core product is stable, I would add a **Campaign Simulator**.
+
+This is more relevant to the Growth Intern role than adding another decorative chart.
+
+## What it does
+
+The administrator can enter different acquisition assumptions and see how they affect the projected registration total.
+
+Example inputs:
+
+| Input | Example value |
+|---|---:|
+| Active college partners | 20 |
+| Average registrations per partner | 12 |
+| WhatsApp-attributed registrations | 100 |
+| Referral-attributed registrations | 100 |
+| Other-channel registrations | 60 |
+
+The projected total is:
+
+\[
+20 \times 12 + 100 + 100 + 60 = 500
+\]
+
+The dashboard displays:
+- Projected registrations.
+- Difference from the 500-registration target.
+- Expected contribution from each channel.
+- The assumptions driving the result.
+- A warning when estimates overlap or are based on insufficient data.
+
+These inputs are examples, not measured campaign results.
+
+## Why this is a good feature
+
+It demonstrates three things:
+
+1. You understand that registration targets come from measurable assumptions.
+2. You can model alternative growth strategies before spending money.
+3. You can use a product to support decisions rather than just report results.
+
+### Prompt 6: Campaign Simulator
+
+Add a Campaign Simulator to AI LaunchPad.
+
+This is an internal planning tool for the seven-day workshop acquisition campaign.
+
+Allow the administrator to edit:
+- Number of active college partners.
+- Expected registrations per partner.
+- WhatsApp distribution assumptions.
+- Referral assumptions.
+- LinkedIn and community assumptions.
+- Email assumptions.
+- Budget allocation by channel.
+
+CALCULATIONS
+Calculate the projected registration total, the gap to the target of 500, the percentage of target achieved and the budget scenario.
+
+Show the contribution of each channel separately.
+
+Allow the user to compare a baseline plan with an alternative scenario.
+
+IMPORTANT RULES
+- Label all projections as estimates.
+- Keep assumptions editable.
+- Never present projections as actual registrations.
+- Explain that channel estimates must be adjusted to avoid double-counting.
+- Do not claim that a scenario has been validated unless real campaign data supports it.
+- Separate planned spending from actual spending.
+- Keep the calculations deterministic and testable.
+- Do not introduce an external AI API just to calculate arithmetic.
+
+DESIGN
+Create a compact, polished planning panel with numeric inputs, clear results and a comparison of baseline versus alternative assumptions.
+
+TEST
+Verify the calculations using known input values, including a scenario that reaches exactly 500, one that falls below 500 and one that exceeds 500.
+
+**My priority order:** complete registration, database, referral tracking, authentication and dashboard first. Add the simulator only after those work.
+
+A complete, reliable application is better than an unfinished application with many features.
+
+---
+
+# 8. Your five-slide growth plan
+
+The assignment permits a maximum of five slides or two pages. I would choose **five slides**, because they make the story easy to present in your three-minute video.
+
+Use Canva or Google Slides. Keep the actual slides concise; put the detailed reasoning in your speaking notes.
+
+## Slide 1 — The opportunity
+
+**Title: From AI Curiosity to First Project**
+
+Include:
+- Campaign: Build Your First AI Project in 60 Minutes.
+- Audience: Final-year engineering students graduating in 2027.
+- Core insight: Students who are interested in AI may need a simple, practical first step.
+- Objective: 500 unique registrations in seven days.
+- Constraints: ₹2,000 budget.
+
+**Key statement:**
+
+"Our strategy is to make the workshop easy to discover, easy to register for, and easy to share."
+
+Visual: One audience segment, one workshop offer, one target.
+
+## Slide 2 — Audience and conversion strategy
+
+**Title: Reduce Friction. Increase Relevance.**
+
+Show three audience motivations:
+
+- Career relevance.
+- Hands-on learning.
+- A clear starting point for AI.
+
+Show the conversion journey:
+
+**Discovery → Landing page → Registration → Referral → More registrations**
+
+Explain that you would test different messages instead of assuming which benefit matters most.
+
+Include a sample CTA:
+
+"Build Your First AI Project — Register Free."
+
+## Slide 3 — The seven-day growth plan
+
+**Title: Distribution Before Advertising**
+
+Show the four primary acquisition channels and the email support channel.
+
+| Channel | Planned registrations |
+|---|---:|
+| College clubs and representatives | 240 |
+| WhatsApp communities | 100 |
+| Student referrals | 100 |
+| LinkedIn and student communities | 40 |
+| Email outreach | 20 |
+| **Total target** | **500** |
+
+Include a small note:
+
+"These are planning assumptions, not validated forecasts. Results will be deduplicated and attributed consistently."
+
+Show the seven-day progression from launch to distribution, optimization and final reporting.
+
+## Slide 4 — The working asset
+
+**Title: A Landing Page That Becomes a Growth Engine**
+
+Include screenshots of:
+- The landing page.
+- The registration success screen.
+- The referral interface.
+- The admin dashboard.
+
+Highlight three capabilities:
+- Low-friction registration.
+- Trackable referrals.
+- Real-time acquisition analytics.
+
+Add the actual deployed application link or a QR code that points to it.
+
+Do not put a screenshot of a dashboard on this slide and imply it is working if the metrics are static. Demonstrate the working version in the video.
+
+## Slide 5 — Measurement, experimentation and ownership
+
+**Title: Learn Fast. Measure. Reallocate.**
+
+Include:
+
+**Primary KPI:** Unique registrations.
+
+**Supporting KPIs:**
+- Landing-page-to-registration conversion rate.
+- Registrations by acquisition source.
+- Referral-attributed registrations.
+- Cost per registration.
+- Progress toward 500.
+
+**Decision rule:** When the campaign falls behind the required pace, investigate which channel can most credibly close the gap and shift effort toward that channel.
+
+**Next experiment:** Test two registration messages with comparable audiences and compare completed registrations, not just clicks.
+
+**Learning:** AI helped accelerate execution, but assumptions, validation, prioritization and final decisions remain the responsibility of the campaign owner.
+
+### Presentation design advice
+
+Use one visual system across all slides:
+- Consistent typography.
+- A restrained color palette.
+- One clear message per slide.
+- Short labels instead of paragraphs.
+- Screenshots from your real working product.
+- Clear separation between targets, estimates and measured results.
+
+The reviewers should understand your thinking in less than a minute, even before you start speaking.
+
+---
+
+# 9. AI + Learning Notes: how to score well on the reflection section
+
+NxtWave explicitly asks what AI suggested, what you changed, and what you rejected.
+
+Do not write generic statements such as "AI helped me save time." Give specific examples of decisions.
+
+You need three examples, and they should describe your actual workflow. The following are examples of how to structure them. Adapt them to what genuinely happens while you build.
+
+## Example 1 — Choosing the growth strategy
+
+**What I asked AI**
+
+"How can I get 500 final-year engineering students to register for a free AI workshop in seven days with ₹2,000?"
+
+**What AI suggested**
+
+A combination of social media promotion, college outreach, referrals and paid advertising.
+
+**What I changed**
+
+I prioritized college clubs, student representatives, permission-based WhatsApp distribution and referrals. I treated paid promotion as a limited experiment rather than the primary acquisition channel.
+
+**Why**
+
+The budget is small, and the target audience is concentrated in student communities. I wanted to maximize relevant distribution before spending money.
+
+**What I learned**
+
+A list of marketing channels is not a growth strategy. Each channel needs an audience, an expected contribution, a measurement method and a contingency plan.
+
+## Example 2 — Reducing registration friction
+
+**What I asked AI**
+
+"Should students create accounts before they can register for the workshop?"
+
+**What AI suggested**
+
+An account-based experience with authentication before registration.
+
+**What I changed**
+
+I chose a guest registration flow and reserved authentication for the administrative dashboard.
+
+**Why**
+
+Requiring a password creates another step before the primary conversion. The workshop registration does not inherently require a student account.
+
+**What I learned**
+
+Authentication should solve a real access-control problem. It should not be added simply because a product needs to look technically advanced.
+
+## Example 3 — Making analytics actionable
+
+**What I asked AI**
+
+"What analytics should I include in the growth dashboard?"
+
+**What AI suggested**
+
+Registration counts, charts, channel breakdowns and a referral leaderboard.
+
+**What I changed**
+
+I added a registration pace indicator, target gap, source-attribution rules and a Growth Action Center.
+
+**Why**
+
+A chart tells the team what happened. A useful growth dashboard should also help the team decide what to do next.
+
+**What I learned**
+
+Analytics becomes more valuable when it connects observed results to a specific action.
+
+### Important
+
+These examples are suggested reflection structures, not evidence that you have already completed these steps.
+
+During your actual build, keep a small log of the prompts you use, the output you receive, what you modify and why. Use the real examples in your final submission.
+
+---
+
+# 10. The three AI questions you must answer
+
+The assignment asks these questions explicitly. Your reflection should be concise, specific and honest.
+
+## Q1. What changed between your first idea and final solution?
+
+A strong answer would explain the evolution of your thinking:
+
+**Initial idea:** Build a landing page and promote the workshop through student communities.
+
+**Final direction:** Build a measurable registration and referral system, with an admin dashboard that connects acquisition channels to completed registrations.
+
+**Reason for the change:** A landing page alone does not solve the distribution problem or show whether the campaign is on track to reach 500 registrations.
+
+The important thing is to describe a real change you made during the project.
+
+## Q2. If you had another 24 hours, what would you improve?
+
+Prioritize improvements based on their likely impact:
+
+1. Run a small message experiment with comparable student audiences.
+2. Validate the acquisition assumptions through real student or club feedback.
+3. Improve attribution and event tracking.
+4. Test the registration flow across more devices.
+5. Improve referral attribution and fraud prevention.
+6. Refine the dashboard recommendations using observed campaign results.
+
+Explain why these would be more valuable than adding another cosmetic feature.
+
+## Q3. What did AI suggest that you deliberately rejected, and why?
+
+You could explain a decision such as rejecting mandatory student accounts before registration.
+
+Or, if AI proposes an elaborate paid advertising plan, you could reject it because the budget is limited and the campaign has not yet validated its organic distribution channels.
+
+A particularly strong example would be:
+
+"I rejected the idea of using registration volume as the only measure of success. A campaign can generate many registrations but still fail to reach the intended audience or spend its budget efficiently. I therefore designed the dashboard to track acquisition source, registration conversion and referral contribution alongside the primary target."
+
+Use that answer only if it reflects a decision you actually made.
+
+---
+
+# 11. Test the application before deploying it
+
+This step is essential. Do not assume the app works just because the AI builder says it has finished.
+
+Use the following acceptance checklist.
+
+| Test | Expected result |
+|---|---|
+| Open the landing page | Page renders correctly on desktop and mobile |
+| Submit a valid registration | A record is saved to the database |
+| Submit an invalid email | The form displays a validation error |
+| Submit the same email twice | No duplicate registration is created |
+| Refresh the success page | The existing registration is not counted again |
+| Register with a valid referral code | The referral is attributed correctly |
+| Register with an invalid code | No referral credit is recorded |
+| Attempt a self-referral | The system rejects the referral credit |
+| Open `/admin` while logged out | Access is denied or redirected |
+| Log in as an unauthorized user | Administrative access is denied |
+| Log in as an authorized administrator | Dashboard loads the correct data |
+| Register a new student | Dashboard updates from the database |
+| Check an empty database | Dashboard displays zero values and useful empty states |
+| Export registrations | Only an authorized administrator can export them |
+| Open the site on mobile | Forms, charts and navigation remain usable |
+| Inspect deployment logs | No unresolved build or runtime errors |
+
+### Security requirements
+
+Pay particular attention to these points:
+
+- Never place a Supabase service-role or secret key in browser code.
+- Enable Row Level Security for exposed tables and define appropriate policies.
+- Do not rely on hiding admin pages as the only security measure.
+- Do not allow anonymous users to retrieve the registration database.
+- Use database constraints to prevent duplicate registrations.
+- Protect administrative queries and exports.
+- Collect only the student information you need.
+- Provide a clear privacy notice and avoid collecting real student data unnecessarily during the demonstration.
+
+Supabase's documentation explicitly warns that service-role credentials bypass row-level security and must remain on the server. Its database security guidance also explains why exposed tables require correctly configured permissions and policies. [Supabase](https://supabase.com/docs/guides/database/postgres/row-level-security?utm_source=chatgpt.com)
+
+For your demo, use a small set of synthetic registrations rather than collecting personal data from real students.
+
+Label the demo dataset visibly, and never mix it with actual campaign results without clear separation.
+
+---
+
+# 12. Deploy it and get a real working link
+
+You need a live link or prototype, so deployment should be part of the plan from the beginning.
+
+Use [GitHub](https://github.com/) to save your code and [Vercel](https://vercel.com/) to deploy the application. The official [Next.js deployment guide](https://nextjs.org/docs/app/getting-started/deploying) explains the available deployment options. [Next.js](https://nextjs.org/docs/app/getting-started/deploying?utm_source=chatgpt.com)
+
+## Deployment checklist
+
+### Step 1: Create your Supabase project
+
+Open [Supabase](https://supabase.com/) and create a project.
+
+Configure:
+- Database tables.
+- Database constraints.
+- Row Level Security policies.
+- Authentication for administrators.
+- Required environment variables.
+
+Run the migrations and verify that the database is working.
+
+### Step 2: Connect the application
+
+In Lovable, connect the project to the configured backend and verify that registration records are being stored.
+
+If you use Next.js locally, configure your environment variables in your development environment.
+
+For a Next.js project, these might include:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_publishable_key
+```
+
+Use the correct current key type provided by your Supabase project. Never put a service-role key in a `NEXT_PUBLIC_` variable or other browser-accessible configuration.
+
+Your administrator account should be provisioned securely, with authorization enforced by the backend and database policies.
+
+### Step 3: Push the project to GitHub
+
+Review the repository before pushing:
+- Remove any secrets.
+- Add the environment file to `.gitignore`.
+- Include a README.
+- Include setup instructions.
+- Document how to configure the database.
+- Keep SQL migrations in version control.
+
+### Step 4: Deploy to Vercel
+
+Connect your repository to Vercel, configure the required environment variables, and deploy.
+
+After deployment, test the production URL. A successful preview deployment does not prove that production environment variables, authentication, or database access are configured correctly.
+
+### Step 5: Verify the real end-to-end flow
+
+Use a test email address you control.
+
+1. Open the deployed landing page.
+2. Register.
+3. Confirm the registration is stored.
+4. Copy the referral link.
+5. Open the link in a separate browser session.
+6. Complete a second test registration.
+7. Confirm that referral attribution works.
+8. Log in to the admin dashboard.
+9. Verify that the registration metrics update.
+10. Test access denial in a logged-out session.
+
+Delete test records or clearly mark them as test data before the final demo.
+
+### Step 6: Prepare the submission links
+
+Your final submission should include:
+
+- **Live application:** the actual deployed URL.
+- **Admin demo:** the dashboard route and a secure way to demonstrate access.
+- **Source code:** the GitHub repository, if appropriate.
+- **Presentation:** your five-slide PDF or slide deck.
+- **Video:** the recorded three-minute walkthrough.
+- **AI notes:** your three real examples.
+
+Never include an administrator password or secret key in the public repository, presentation, or video.
+
+If the application requires reviewer access, provide a safe demo account or arrange a controlled demonstration without exposing credentials publicly.
+
+---
+
+# 13. Your three-minute video: exact speaking script
+
+Your video should not sound like you are reading your entire presentation. Show the product while explaining the decisions behind it.
+
+Aim for approximately 360–390 spoken words, adjusting for your natural speaking speed.
+
+Here is a draft you can adapt after the product is working.
+
+**0:00–0:25 | The problem**
+
+Hi, I'm presenting my solution to the NxtWave Growth Intern challenge.
+
+The objective was to get 500 final-year engineering students to register for a free AI workshop in seven days with a budget of ₹2,000.
+
+I approached this as two connected problems: how to reach the right students and how to measure whether our acquisition strategy is working.
+
+**0:25–0:55 | The growth strategy**
+
+I prioritized college clubs, student representatives, appropriate WhatsApp communities and student referrals rather than depending on paid advertising.
+
+My acquisition plan targets 500 registrations across five channels. These numbers are planning assumptions, not validated results. I would measure actual registrations by source and adjust the plan as the campaign progresses.
+
+**0:55–1:35 | The student experience**
+
+Here is the landing page for AI LaunchPad.
+
+The objective is to make the workshop benefit immediately clear and keep registration simple. Students can register without creating an account first.
+
+After registration, they receive a confirmation and a unique referral link they can share with friends. The system is designed to distinguish referral clicks from actual completed registrations.
+
+**1:35–2:10 | The growth dashboard**
+
+The second part is the administrator dashboard.
+
+It tracks registrations against the target, daily progress, acquisition channels and referral performance.
+
+The Growth Action Center translates these metrics into potential next steps. For example, if registrations fall behind the required pace, the campaign operator can investigate which acquisition channels need attention.
+
+Any simulated data used in this demonstration is explicitly labeled. The dashboard is designed to use stored records rather than hardcoded totals.
+
+**2:10–2:40 | What I learned**
+
+My initial approach was to build a landing page and promote the workshop. I expanded it into a measurable acquisition and referral system because a landing page alone cannot tell us whether the campaign is on track.
+
+I also rejected unnecessary friction in the student registration process and prioritized authentication where it protects administrative access.
+
+**2:40–3:00 | Closing**
+
+If I had another 24 hours, I would validate the channel assumptions with student communities, test alternative messages and improve the recommendations using actual campaign data.
+
+My main takeaway is that growth is not just about getting attention. It is about turning attention into registrations, measuring what works and making better decisions quickly.
+
+Thank you.
+
+**Do not claim that the campaign achieved 500 registrations.** Explain that 500 is the target and your system is designed to help pursue and measure it.
+
+During the recording, show the actual landing page, a completed test registration, the referral link and the admin dashboard. If a feature is incomplete, be transparent about it.
+
+---
+
+# 14. The 48-hour execution timetable
+
+You have a short deadline, so we need to protect time for the deliverables rather than spending the entire period developing the application.
+
+Here is the order I would follow.
+
+| Time | Task | Deliverable |
+|---|---|---|
+| Hours 0–2 | Finalize audience, campaign assumptions and product scope | One-page project brief |
+| Hours 2–5 | Build the landing page and registration interface | Initial frontend |
+| Hours 5–9 | Configure Supabase and implement registration | Working database-backed registration |
+| Hours 9–12 | Implement referral codes and attribution | Working referral flow |
+| Hours 12–16 | Implement admin authentication and dashboard | Protected dashboard |
+| Hours 16–19 | Add core analytics and Growth Action Center | Measurable campaign dashboard |
+| Hours 19–21 | Test registration, referrals and access controls | Test checklist and bug fixes |
+| Hours 21–24 | Deploy the application and verify production behavior | Live demo |
+| Hours 24–28 | Prepare the five-slide growth plan | Presentation |
+| Hours 28–31 | Write the AI learning notes | Three genuine examples |
+| Hours 31–33 | Record and review the video | Three-minute walkthrough |
+| Hours 33–38 | Fix high-priority bugs and improve usability | Stable final product |
+| Hours 38–42 | Recheck links, presentation, video and security | Final quality review |
+| Hours 42–48 | Contingency and submission | Submitted application |
+
+This is a planning framework, not a requirement to spend every hour working. Keep adequate time for breaks and unexpected technical issues.
+
+**If you fall behind, cut features in this order:**
+1. Campaign simulator.
+2. Advanced referral leaderboard.
+3. Complex charting.
+4. Additional filters and cosmetic enhancements.
+
+Do not sacrifice the core registration flow, authorization, deployment, growth plan or video to preserve optional features.
+
+---
+
+# 15. Final quality check: ask AI to review your submission like a NxtWave evaluator
+
+Before submitting, use this prompt in ChatGPT after you have completed the application and prepared your plan.
+
+Act as a highly critical hiring evaluator reviewing a candidate's submission for the NxtWave Growth Intern challenge.
+
+The challenge is to achieve 500 final-year engineering student registrations for a free online AI workshop within seven days on a ₹2,000 budget.
+
+Evaluate my actual work against these criteria:
+1. Growth strategy and audience understanding.
+2. Realism of the 500-registration acquisition model.
+3. Quality of channel prioritization.
+4. Conversion and referral strategy.
+5. Technical quality of the working asset.
+6. Accuracy of analytics and attribution.
+7. Security and reliability.
+8. Quality of AI-assisted learning and judgment.
+9. Clarity of the five-slide presentation.
+10. Quality of the three-minute video.
+
+For every criterion:
+- Identify what is genuinely strong.
+- Identify the biggest weakness.
+- Explain what evidence is missing.
+- Suggest the highest-impact improvement that can be completed within the remaining time.
+
+Specifically challenge my assumptions about:
+- Number of college partners.
+- Registrations expected per partner.
+- WhatsApp distribution.
+- Referral conversion.
+- Channel overlap.
+- Budget allocation.
+- Registration conversion rates.
+- Whether the dashboard uses real data or simulated data.
+
+Check whether my submission demonstrates ownership and critical thinking rather than simply relying on AI-generated content.
+
+Do not invent evidence, results, testimonials or campaign outcomes. Do not claim to have tested the application unless I provide actual test results.
+
+Conclude with:
+- Five must-fix issues.
+- Three optional improvements.
+- A final submission checklist.
+- An honest assessment of whether the work is ready to submit.
+
+This is how you can use AI as a reviewer rather than simply a content generator.
+
+---
+
+# 16. Your final submission checklist
+
+Before you submit through the application form provided in the challenge, verify everything below.
+
+### A. Growth plan
+
+- [ ] Maximum five slides or two pages.
+- [ ] Specific target audience.
+- [ ] Clear reason students would register.
+- [ ] Prioritized acquisition channels.
+- [ ] Seven-day execution plan.
+- [ ] Registration assumptions that add up to 500.
+- [ ] ₹2,000 budget allocation.
+- [ ] Metrics and contingency plan.
+
+### B. Working asset
+
+- [ ] Live landing page.
+- [ ] Registration form.
+- [ ] Database-backed registration.
+- [ ] Duplicate-registration prevention.
+- [ ] Referral links and attribution.
+- [ ] Protected administrator login.
+- [ ] Working analytics dashboard.
+- [ ] Clear distinction between actual and simulated data.
+- [ ] Mobile-friendly interface.
+- [ ] No exposed secrets.
+
+### C. AI and learning notes
+
+- [ ] Three genuine examples.
+- [ ] What you asked AI.
+- [ ] What AI suggested.
+- [ ] What you changed.
+- [ ] Why you changed it.
+- [ ] At least one deliberate rejection of AI's suggestion.
+
+### D. Video
+
+- [ ] Approximately three minutes.
+- [ ] Clear explanation of the growth strategy.
+- [ ] Actual product demonstration.
+- [ ] Explanation of what changed during development.
+- [ ] Honest discussion of limitations and next steps.
+- [ ] Clear audio and readable screen recording.
+
+### E. Final submission
+
+- [ ] All links open correctly.
+- [ ] Presentation and video are accessible.
+- [ ] Demo access is secure.
+- [ ] The project has been tested after deployment.
+- [ ] No personal data or credentials are exposed.
+
+---
+
+# 17. What I want you to do first
+
+I don't want you to become overwhelmed by all these requirements. We should build this step by step.
+
+**Your first milestone is to get the foundation running, not to implement every feature immediately.**
+
+Do these three things now:
+
+**Step 1:** Open [Lovable](https://lovable.dev/) and create a new project called `AI LaunchPad — Growth Engine`.
+
+**Step 2:** Paste **Prompt 1** from Section 6. Let it generate the initial application, then inspect what it actually created.
+
+**Step 3:** Tell me what happened. If you encounter errors, share the error message or a screenshot. If the application generates successfully, show me its current state so we can decide what to implement next.
+
+I can help you refine the database schema, write SQL migrations, correct the referral logic, review security policies, design the dashboard, test the calculations, prepare your slides and improve your video script as you progress.
+
+One final piece of advice: **don't try to impress the evaluator with the number of features. Impress them with the quality of your decisions.**
+
+The strongest version of this project will demonstrate that you understand the student, can identify practical acquisition channels, can turn a strategy into a working system, and can use data to decide what to do next.
+
+You have a clear path. Let's make the core product work first, then polish it into a submission you can confidently explain in your interview.

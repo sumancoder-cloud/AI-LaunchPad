@@ -1,0 +1,259 @@
+Heyy! ❤️ Let me explain this in a very simple way, because **you need to understand the actual project before you start building it.**
+
+# 1. What is this project actually?
+
+Your assignment is to solve a business problem for NxtWave.
+
+NxtWave wants to conduct a free online workshop called:
+
+**"Build Your First AI Project in 60 Minutes."**
+
+Your job is to figure out how to get **500 final-year engineering students to register for this workshop within 7 days, with a budget of just ₹2,000.**
+
+You are not being asked to build an AI model or teach students how to create AI projects.
+
+You are being asked to think like a **Growth Intern** who helps a company attract users and grow its audience.
+
+For example, imagine NxtWave launches a new educational product. How would you make 500 students interested enough to register?
+
+That is the problem you need to solve.
+
+# 2. What exactly are we building?
+
+I recommend building a project called:
+
+## 🚀 AI LaunchPad — Student Growth Engine
+
+It is a web application that helps NxtWave promote its workshop, collect student registrations, encourage referrals, and monitor the effectiveness of its marketing campaign.
+
+Think of it as a small marketing platform with two sides.
+
+
+
+### Part A: The student website
+
+This is the website students see when they discover the workshop.
+
+Imagine a student receives a WhatsApp message:
+
+> Hey! Want to build your first AI project? Join this free 60-minute online workshop!
+
+The student clicks the link and lands on your website.
+
+The website displays:
+
+**Build Your First AI Project in 60 Minutes**
+
+- Free online workshop.
+- Designed for engineering students.
+- Beginner-friendly.
+- Practical introduction to building an AI project.
+
+There is a **Register Free** button.
+
+The student clicks it, enters their details, and registers.
+
+After registration, the student receives a confirmation and a unique referral link that they can share with friends.
+
+That's the first part of your project.
+
+### Part B: The admin dashboard
+
+Now imagine you are the NxtWave growth team member responsible for getting 500 registrations.
+
+You need to know:
+- How many students have registered?
+- How many more registrations do you need?
+- Which colleges are bringing students?
+- Are students registering through WhatsApp or referrals?
+- Which marketing channel is performing best?
+- Are you on track to reach 500 registrations within seven days?
+
+Your dashboard answers these questions.
+
+For example, imagine it displays:
+
+| Metric | Example |
+|---|---:|
+| Registration target | 500 |
+| Total registrations | 200 |
+| Target completed | 40% |
+| Registrations remaining | 300 |
+| Days remaining | 3 |
+| Required daily registrations | 100 |
+
+These are hypothetical numbers for demonstrating the dashboard, not actual campaign results.
+
+The dashboard can also display charts showing daily registrations, acquisition channels, and referral performance.
+
+**This is the second part of your project.**
+
+---
+
+# 3. How does the complete project work?
+
+Let's walk through a real-world example.
+
+Imagine three students: Rahul, Priya, and Arjun.
+
+### Step 1: Rahul discovers the workshop
+
+Rahul sees a message in his college WhatsApp group.
+
+He clicks the workshop link and visits your website.
+
+### Step 2: Rahul registers
+
+He enters his name, email address, college, graduation year, and branch.
+
+The application saves his registration in the database.
+
+The dashboard's registration count increases by one.
+
+### Step 3: Rahul shares his referral link
+
+After registering, Rahul receives a unique referral link.
+
+He shares it with his friends.
+
+### Step 4: Priya registers through Rahul's link
+
+Priya opens Rahul's link and completes registration.
+
+Your application records Priya's registration and attributes it to Rahul's referral code.
+
+The dashboard now shows two registrations.
+
+### Step 5: The growth team checks the dashboard
+
+The team can see:
+- Two registered students.
+- One referral-attributed registration.
+- The relevant acquisition sources.
+
+### Step 6: The team makes a decision
+
+Suppose the team notices that referrals are generating registrations, while another channel is generating many visits but very few registrations.
+
+The team can investigate the weaker channel and improve its messaging or registration experience.
+
+This is the important part: the application helps the team **measure growth and decide what to do next**.
+
+---
+
+# 4. Why do we need authentication?
+
+You mentioned that you want authentication in your project.
+
+Authentication is useful, but we should use it where it solves a real problem.
+
+Your application will have two types of users.
+
+| User | What they can do |
+|---|---|
+| Student | View the workshop, register, receive a referral link, and share it |
+| Administrator | Log in, view campaign analytics, inspect registrations, and manage campaign settings |
+
+Students do not need to create passwords before registering.
+
+The administrator, however, must authenticate before accessing private campaign information.
+
+You should also enforce administrator permissions in the backend and database, not just hide the dashboard from unauthorized users.
+
+This gives you a real authentication feature without adding unnecessary friction to registration.
+
+---
+
+# 5. Why is this project relevant to a Growth Intern role?
+
+Because it combines three important activities.
+
+**1. Acquisition:** How do we attract students to the workshop?
+
+You develop the marketing strategy using college clubs, student communities, referrals, and other relevant channels.
+
+**2. Conversion:** How do we turn interested students into registered students?
+
+You build a landing page and a simple registration process.
+
+**3. Analytics and optimization:** How do we know what is working?
+
+You build a dashboard that tracks registrations, referral attribution, channel performance, and progress toward the target.
+
+Together, these form a basic growth system.
+
+A landing page alone addresses only part of the problem. Your project connects the marketing strategy, registration process, and measurement system.
+
+---
+
+# 6. What makes your project unique?
+
+I would add one feature that is particularly relevant to this assignment.
+
+## The Growth Action Center
+
+Instead of displaying only charts, the dashboard suggests what the growth team should investigate or do next.
+
+For example:
+
+**Situation:** The campaign has generated only 150 registrations by Day 4.
+
+**Target:** 500 registrations in seven days.
+
+**Dashboard insight:**
+- Current registrations: 150.
+- Remaining registrations: 350.
+- Time remaining: 3 days.
+- Required pace: approximately 117 registrations per day.
+
+**Suggested action:**
+
+"Registration pace is below target. Review the acquisition channels producing the most completed registrations, follow up with interested college partners, and test whether the landing page is converting visitors effectively."
+
+The dashboard should use actual data to calculate the shortfall. The suggested action can initially be based on predefined rules rather than an expensive AI integration.
+
+This demonstrates that you understand the difference between reporting data and using data to make decisions.
+
+---
+
+# 7. What exactly will you submit to NxtWave?
+
+You will submit four things.
+
+| Deliverable | What it contains |
+|---|---|
+| Growth plan | Five slides explaining your audience, channels, budget, and seven-day strategy |
+| Working asset | Your deployed AI LaunchPad website, registration system, referral engine, and analytics dashboard |
+| AI learning notes | Three examples showing how you used, evaluated, and sometimes rejected AI suggestions |
+| Three-minute video | A demonstration of the project and an explanation of your decisions |
+
+Remember that the project is a **simulation**. You do not have to contact actual students or execute the campaign.
+
+Your objective is to demonstrate a credible strategy and a working prototype.
+
+# 8. My final recommendation
+
+Build **AI LaunchPad — Student Growth Engine**, with these core features:
+
+1. A professional workshop landing page.
+2. A working student registration form.
+3. Database storage and duplicate-registration prevention.
+4. Unique referral links.
+5. Administrator authentication.
+6. A protected analytics dashboard.
+7. A channel-performance breakdown.
+8. A Growth Action Center.
+9. A campaign simulator, if time permits.
+
+Use React or Next.js for the frontend, Supabase for the database and authentication, and Lovable or Cursor to accelerate development.
+
+But remember: the goal is not to build the biggest application possible. It is to show that you can solve the business problem intelligently.
+
+**Before we start coding, I want you to understand one important distinction:**
+
+- **The assignment's primary problem:** How can NxtWave get 500 student registrations in seven days?
+- **The product you build:** A system that helps implement, measure, and optimize that acquisition strategy.
+
+Your marketing plan explains how you intend to reach 500 students. Your web application demonstrates how you would support and measure that plan.
+
+**That combination is what I recommend you submit.**
